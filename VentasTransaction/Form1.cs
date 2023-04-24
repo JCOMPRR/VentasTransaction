@@ -27,10 +27,12 @@ namespace VentasTransaction
                 {
                     SqlTransaction transaction;
                     con.Open();
+                    //Mantener la transaccion
                     transaction = con.BeginTransaction();
 
                     try
                     {
+                        //Debe iniciar con 0
                         string query = "select top(1) Folio from Folios";
                         int folioActual = 0;
                         using (SqlCommand cmd = new SqlCommand(query, con))
@@ -154,6 +156,20 @@ namespace VentasTransaction
 
                 MessageBox.Show($"Ocurrio un error al guardar la venta {ex.Message}");
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'ventasTransactionDBDataSet1.Clientes' Puede moverla o quitarla según sea necesario.
+            this.clientesTableAdapter.Fill(this.ventasTransactionDBDataSet1.Clientes);
+            // TODO: esta línea de código carga datos en la tabla 'ventasTransactionDBDataSet.Productos' Puede moverla o quitarla según sea necesario.
+            this.productosTableAdapter.Fill(this.ventasTransactionDBDataSet.Productos);
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

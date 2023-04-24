@@ -8,20 +8,34 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
-    public class Producto
+    public class Cliente
     {
+        //id y nombre
         public int Id { get; set; }
-        public string Descripcion { get; set; }
-        public decimal PrecioUnitario { get; set; }
+        public string Nombre { get; set; }
 
-        public void AgregarProducto(Producto producto)
+        public void AgregarCliente(Cliente cliente)
         {
             try
             {
-                string query = "INSERT INTO Productos" +
-                    "(Id, Descripcion, PrecioUnitario) " +
+                string query = "INSERT INTO Clientes" +
+                    "(Id, Nombre) " +
                     "VALUES" +
-                    "(@Id,@Descripcion,@PrecioUnitario)";
+                    "(@Id,@Nombre)";
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void ActualizarCliente(Cliente cliente)
+        {
+            try
+            {
+                string query = "UPDATE Clientes SET Id, Nombre = " +
+                    "@Id, @Nombre";
 
                 using (SqlConnection con = new SqlConnection(query))
                 {
@@ -33,8 +47,9 @@ namespace AccesoDatos
                         cmd.CommandType = CommandType.Text;
                         cmd.Transaction = transaction;
 
-                        cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-                        cmd.Parameters.AddWithValue("@PrecioUnitario", producto.PrecioUnitario);
+                        cmd.Parameters.AddWithValue("@Id", cliente.Id);
+                        cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+
 
                         cmd.ExecuteNonQuery();
                     }
@@ -47,45 +62,11 @@ namespace AccesoDatos
             }
         }
 
-        //Actualiza el producto seleccionado mediante la Id
-        public void ActualizarProducto(Producto producto)
+        public void EliminarCliente(int id)
         {
             try
             {
-                string query = "UPDATE Productos SET Descripcion, PrecioUnitario = " +
-                    "@Descripcion, @PrecioUnitario";
-
-                using (SqlConnection con = new SqlConnection(query))
-                {
-                    SqlTransaction transaction = con.BeginTransaction();
-                    con.Open();
-
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Transaction = transaction;
-
-                        cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-                        cmd.Parameters.AddWithValue("@PrecioUnitario", producto.PrecioUnitario);
-                        cmd.Parameters.AddWithValue("@Id", producto.Id);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        //Aqui elimina el producto que seleccionemos 
-        public void EliminarProducto(int id) //Pongo el Id ya que se borrara mediante ella
-        {
-            try
-            {
-                string query = "DELETE FROM Productos where Id = @Id";
+                string query = "DELETE FROM Clientes where Id = @Id";
 
                 using (SqlConnection con = new SqlConnection(query))
                 {
@@ -110,5 +91,6 @@ namespace AccesoDatos
                 throw new Exception(ex.Message);
             }
         }
+
     }
 }
