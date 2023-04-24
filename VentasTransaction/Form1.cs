@@ -167,9 +167,82 @@ namespace VentasTransaction
 
         }
 
+
+        //No se que agregar aqui :(
+        //DataGrid Productos
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        //DataGrid de Clientes
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+        //Botones de Productos
+        private void button8_Click(object sender, EventArgs e)
+        {
+            AgregarProducto();
+        }
+
+        private void AgregarProducto()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ActualizarProducto();
+        }
+
+        private void ActualizarProducto()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            EliminarProducto();
+        }
+
+        private void EliminarProducto()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        //Botones de Clientes
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AgregarCliente();
+        }
+
+        private void AgregarCliente()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            ActualizarCliente();
+        }
+
+        private void ActualizarCliente()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            EliminarCliente();
+        }
+
+        private void EliminarCliente()
+        {
+            throw new NotImplementedException();
         }
     }
 }
