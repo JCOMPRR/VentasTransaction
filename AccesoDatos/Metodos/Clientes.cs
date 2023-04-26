@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
-    public class Cliente
+    public class Clientes
     {
-        //id y nombre
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        public void AgregarCliente(Cliente cliente)
+        public void AgregarCliente(Clientes cliente)
         {
             try
             {
@@ -30,7 +29,7 @@ namespace AccesoDatos
             }
         }
 
-        public void ActualizarCliente(Cliente cliente)
+        public void ActualizarCliente(Clientes cliente)
         {
             try
             {
@@ -62,7 +61,7 @@ namespace AccesoDatos
             }
         }
 
-        public void EliminarCliente(int id)
+        public void EliminarCliente(int Id)
         {
             try
             {
@@ -78,7 +77,7 @@ namespace AccesoDatos
                         cmd.CommandType = CommandType.Text;
                         cmd.Transaction = transaction;
 
-                        cmd.Parameters.AddWithValue("@Id", id);
+                        cmd.Parameters.AddWithValue("@Id", Id);
 
                         cmd.ExecuteNonQuery();
                     }

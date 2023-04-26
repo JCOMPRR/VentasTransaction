@@ -13,6 +13,9 @@ namespace VentasTransaction
             InitializeComponent();
         }
 
+
+        //"referencia de objeto no establecida en una instancia de un objeto"
+        //Como chuchas arreglo esto???
         private void button1_Click(object sender, EventArgs e)
         {
             GuardarVenta();

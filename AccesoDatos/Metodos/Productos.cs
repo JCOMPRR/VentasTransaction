@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
-    public class Producto
+    public class Productos
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public decimal PrecioUnitario { get; set; }
 
-        public void AgregarProducto(Producto producto)
+        public void AgregarProducto(Productos producto)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace AccesoDatos
         }
 
         //Actualiza el producto seleccionado mediante la Id
-        public void ActualizarProducto(Producto producto)
+        public void ActualizarProducto(Productos producto)
         {
             try
             {
