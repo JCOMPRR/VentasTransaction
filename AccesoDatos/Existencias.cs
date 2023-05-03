@@ -14,28 +14,41 @@ namespace AccesoDatos
         public int ProductoId{ get; set; }
         public int Existencia { get; set;}
 
-        public void AgregarExistencia(Existencias existencias)
+        public SqlDataAdapter Obtener()
         {
             try
             {
-                string query = "INSERT INTO Existencias" +
-                    "(Id, ProductoId, Existencias)" +
-                    "VALUES" +
-                    "(@Id, @ProductoId, @Existencias)";
+                string query = "SELECT * FROM Existencias";
+                SqlDataAdapter clientes = new SqlDataAdapter(query, Conexion.ConnectionString);
+
+                return clientes;
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }
 
-        public void ActualizarExistencia(Existencias existencias)
+        public void Agregar(SqlConnection con, SqlTransaction transaction, int ProductoId)
+        {
+            string query = "Insert Into Existencias (Existencia, ProductoId) VALUES (0, @ProductoId)";
+
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.Transaction = transaction;
+
+                cmd.Parameters.AddWithValue("@ProductoId", ProductoId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Actualizar(Existencias existencias)
         {
             try
             {
-                string query = "UPDATE Existencias SET Id, ProductoId, Existencias = " +
-                    "@Id, @ProductoId, @Existencias";
+                string query = "UPDATE Existencias SET ProductoId, Existencias = " +
+                    "@ProductoId, @Existencias";
 
                 using (SqlConnection con = new SqlConnection(query))
                 {
@@ -54,18 +67,13 @@ namespace AccesoDatos
 
                         cmd.ExecuteNonQuery();
                     }
-                }     
+                }
             }
             catch (Exception ex)
             {
 
                 throw new Exception(ex.Message);
             }
-        }
-
-        public void EliminarExistencia(int Existencia)
-        {
-            string query = "DELETE FROM Existencias WHERE Existencia = @Existencia";
         }
     }
 }

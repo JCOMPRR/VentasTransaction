@@ -10,5 +10,6 @@ namespace AccesoDatos
     {
 
         public static string ConnectionString { get; private set; } = "Server=localhost;Database=VentasTransactionDB;Trusted_Connection=True;";
+        public static string ConectionString { get; internal set; }
     }
 }

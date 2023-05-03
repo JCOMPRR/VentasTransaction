@@ -14,9 +14,10 @@ namespace VentasTransaction
         }
 
 
+        //Al darle al btn GuardarVenta aparece esto: (Por que chuchas aparece esto nasjfbjke)
         //"referencia de objeto no establecida en una instancia de un objeto"
-        //Como chuchas arreglo esto???
-        private void button1_Click(object sender, EventArgs e)
+        //significa que se está refiriendo a un objeto que no existe, que se eliminó o limpió
+        private void Button1_Click(object sender, EventArgs e)
         {
             GuardarVenta();
         }
@@ -178,6 +179,8 @@ namespace VentasTransaction
 
         }
 
+
+
         //DataGrid de Clientes
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -185,67 +188,53 @@ namespace VentasTransaction
         }
 
 
+
+
+
+
+
+
+
+
         //Botones de Productos
-        private void button8_Click(object sender, EventArgs e)
+
+        //Agregar
+        private void button2_Click(object sender, EventArgs e)
         {
-            AgregarProducto();
+
         }
 
-        private void AgregarProducto()
+        //Actualizar
+        private void button3_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        //Eliminar
+        private void button4_Click(object sender, EventArgs e)
         {
-            ActualizarProducto();
+
         }
 
-        private void ActualizarProducto()
-        {
-            throw new NotImplementedException();
-        }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            EliminarProducto();
-        }
 
-        private void EliminarProducto()
-        {
-            throw new NotImplementedException();
-        }
+
+
+
+
 
 
         //Botones de Clientes
-        private void button3_Click(object sender, EventArgs e)
+
+
+        //Agregar
+        private void button5_Click(object sender, EventArgs e)
         {
-            AgregarCliente();
+
         }
 
-        private void AgregarCliente()
-        {
-            throw new NotImplementedException();
-        }
 
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-            ActualizarCliente();
-        }
+        
 
-        private void ActualizarCliente()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            EliminarCliente();
-        }
-
-        private void EliminarCliente()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

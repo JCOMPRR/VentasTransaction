@@ -54,10 +54,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VentasTransactionDBDataSet.cs">
+      <DependentUpon>VentasTransactionDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="VentasTransactionDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VentasTransactionDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VentasTransactionDBDataSet1.cs">
+      <DependentUpon>VentasTransactionDBDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="VentasTransactionDBDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>

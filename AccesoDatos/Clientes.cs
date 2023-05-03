@@ -13,14 +13,45 @@ namespace AccesoDatos
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        public void AgregarCliente(Clientes cliente)
+        public SqlDataAdapter ObtenerClientes()
+        {
+            try
+            {
+                string query = "SELECT * FROM Clientes";
+                SqlDataAdapter clientes = new SqlDataAdapter(query, Conexion.ConnectionString);
+
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void CrearCliente(Clientes cliente)
         {
             try
             {
                 string query = "INSERT INTO Clientes" +
-                    "(Id, Nombre) " +
+                    "(Nombre) " +
                     "VALUES" +
-                    "(@Id,@Nombre)";
+                    "(@Nombre)";
+
+                using (SqlConnection con = new SqlConnection(Conexion.ConnectionString))
+                {
+                    //Abre la conexion
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                        cmd.ExecuteNonQuery();
+                    }
+                    //Cierra la Conexion
+                    con.Close();
+                }
+
             }
             catch (Exception ex)
             {
@@ -33,30 +64,25 @@ namespace AccesoDatos
         {
             try
             {
-                string query = "UPDATE Clientes SET Id, Nombre = " +
-                    "@Id, @Nombre";
+                // Query para Actualizar un cliente //
+                string query = "UPDATE Clientes SET Nombre = @Nombre WHERE Id= @Id";
 
-                using (SqlConnection con = new SqlConnection(query))
+                using (SqlConnection con = new SqlConnection(Conexion.ConnectionString))
                 {
-                    SqlTransaction transaction = con.BeginTransaction();
                     con.Open();
-
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.Transaction = transaction;
 
                         cmd.Parameters.AddWithValue("@Id", cliente.Id);
                         cmd.Parameters.AddWithValue("@Nombre", cliente.Nombre);
-
-
                         cmd.ExecuteNonQuery();
                     }
+
                 }
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }
@@ -67,20 +93,18 @@ namespace AccesoDatos
             {
                 string query = "DELETE FROM Clientes where Id = @Id";
 
-                using (SqlConnection con = new SqlConnection(query))
+                using (SqlConnection con = new SqlConnection(Conexion.ConnectionString))
                 {
-                    SqlTransaction transaction = con.BeginTransaction();
                     con.Open();
-
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.Transaction = transaction;
 
                         cmd.Parameters.AddWithValue("@Id", Id);
 
                         cmd.ExecuteNonQuery();
                     }
+                    con.Close();
                 }
             }
 
@@ -90,6 +114,5 @@ namespace AccesoDatos
                 throw new Exception(ex.Message);
             }
         }
-
     }
 }
